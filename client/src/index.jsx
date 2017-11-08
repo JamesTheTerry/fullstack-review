@@ -15,7 +15,10 @@ class App extends React.Component {
 
   search (term) {
     $.post('http://127.0.0.1:1128/repos', {'username': term}, function(data) {
+      // success
       console.log(data);
+      // clear the input field
+      $('input').val('');
     });
     console.log(`${term} was searched`);
   }

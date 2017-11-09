@@ -19,12 +19,14 @@ let getReposByUsername = (username, outsideCallback) => {
       if (!err && res.statusCode === 200) {
         var repos = JSON.parse(body);
         repos.forEach((repo) => {
-          console.log(`Repo Id: ${repo.id}`);
-          console.log(`Name: ${repo.name}`);
-          console.log(`URL: ${repo.html_url}`);
-          console.log(`Username: ${repo.owner.login}`);
-          console.log(`Userid: ${repo.owner.id}`);
-          console.log(`Stars: ${repo.stargazers_count}\n`);
+          console.log(`Adding Repo: ${repo.name} by ${repo.owner.login}`)
+
+          // console.log(`Repo Id: ${repo.id}`);
+          // console.log(`Name: ${repo.name}`);
+          // console.log(`URL: ${repo.html_url}`);
+          // console.log(`Username: ${repo.owner.login}`);
+          // console.log(`Userid: ${repo.owner.id}`);
+          // console.log(`Stars: ${repo.stargazers_count}\n`);
         });
         resolve(repos);
       }

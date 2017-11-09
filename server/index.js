@@ -19,17 +19,21 @@ app.post('/repos', function (req, res) {
     repos.forEach(repo => {
       db.save(repo);
     })
-    res.send(201);
+    res.sendStatus(201);
   });
 
 });
 
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
+  console.log('Get request received');
+
+  // res.status(200).end(); // for testing purpose
+
   db.read()
   .then(data => {
-    console.log(data);
-    res.send(200);
+    console.log('Data in the Repo get', data);
+    res.send(200, JSON.stringify(data));
   })
 });
 

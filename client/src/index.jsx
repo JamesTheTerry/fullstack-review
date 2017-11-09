@@ -10,15 +10,29 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
+  }
 
+  addRepos() {
+    $.get('http://127.0.0.1:1128/repos', (data, status) => {
+      console.log('get: ', status);
+      console.log(data); // this is the array of react divs
+
+      this.setState({
+        repos: data
+      });
+
+    }, 'json');
   }
 
   search(term) {
-    $.post('http://127.0.0.1:1128/repos', {'username': term}, function(data) {
+    $.post('http://127.0.0.1:1128/repos', {'username': term}, (data) => {
       // success
       console.log(data);
       // clear the input field
       $('input').val('');
+      // then we should get this new data
+      // in the future maybe the post could return the same data as a get request
+      this.addRepos();
     });
     console.log(`${term} was searched`);
   }
@@ -32,9 +46,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.get('http://127.0.0.1:1128/repos'), function(data) {
-      console.log(data);
-    }
+    // this.setState({
+    //   repos: ['carlos']
+    // });
+    this.addRepos();
+
+    // $.get('http://127.0.0.1:1128/repos', (data, status) => {
+    //   console.log('get: ', status);
+    //   console.log(data); // this is the array of react divs
+    //   this.addRepos(data);
+    // }, 'json');
   }
 }
 

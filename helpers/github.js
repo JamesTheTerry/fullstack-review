@@ -24,6 +24,7 @@ let getReposByUsername = (username) => {
       // console.log('GITHUB GET RESPONSE\n', data);
       console.log(`Length ${repos.length}\n`);
       repos.forEach((repo) => {
+        console.log(`Repo Id: ${repo.id}`);
         console.log(`Name: ${repo.name}`);
         console.log(`URL: ${repo.html_url}`);
         console.log(`Username: ${repo.owner.login}`);

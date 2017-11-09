@@ -26,5 +26,8 @@
     "react-dom": "^15.4.2",
     "request": "^2.81.0"
   },
-  "scripts": {"start": "node server"}
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "node server"
+  }
 }

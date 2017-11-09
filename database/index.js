@@ -5,19 +5,21 @@ let repoSchema = mongoose.Schema({
   id: Schema.ObjectId,
   name: String,
   url: String,
-  stars: Number
+  stars: Number,
+  username: String,
+  userid: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (data) => {
+let save = (repo) => {
   // take the data
   var formatted = {
-    name: data.name,
-    url: data.html_url,
-    stars: data.stargazers_count
-    username: data.owner.login,
-    userid: data.owner.id
+    name: repo.name,
+    url: repo.html_url,
+    stars: repo.stargazers_count
+    username: repo.owner.login,
+    userid: repo.owner.id
   }
 
   Repo.create(formatted, function (err, responseMaybe) {

@@ -27,7 +27,8 @@
     "request": "^2.81.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
-    "start": "node server"
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
+    "start": "node server",
+    "postinstall": "npm run build"
   }
 }

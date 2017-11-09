@@ -55,5 +55,18 @@ let read = () => {
   });
 }
 
+let getCount = () => {
+  return new Promise(function(resolve, reject) {
+    Repo.count().exec(function(err, data) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+}
+
 module.exports.save = save;
 module.exports.read = read;
+module.exports.getCount = getCount;

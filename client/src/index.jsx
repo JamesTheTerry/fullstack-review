@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      repoCount: 0
     }
   }
 
@@ -18,7 +19,8 @@ class App extends React.Component {
       console.log(data); // this is the array of react divs
 
       this.setState({
-        repos: data
+        repos: data.repos,
+        repoCount: data.count
       });
 
     }, 'json');
@@ -40,22 +42,13 @@ class App extends React.Component {
   render() {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+      <RepoList repos={this.state.repos} repoCount={this.state.repoCount}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
   }
 
   componentDidMount() {
-    // this.setState({
-    //   repos: ['carlos']
-    // });
     this.addRepos();
-
-    // $.get('http://127.0.0.1:1128/repos', (data, status) => {
-    //   console.log('get: ', status);
-    //   console.log(data); // this is the array of react divs
-    //   this.addRepos(data);
-    // }, 'json');
   }
 }
 

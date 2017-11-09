@@ -28,13 +28,27 @@ app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   console.log('Get request received');
 
-  // res.status(200).end(); // for testing purpose
+  db.getCount()
+  .then(data => {
+    console.log('DB COUNT', data);
+  });
 
   db.read()
-  .then(data => {
-    console.log('Data in the Repo get', data);
-    res.send(200, JSON.stringify(data));
-  })
+  .then(repos => {
+    console.log('Data in the Repo get', repos);
+
+    db.getCount()
+    .then(count => {
+      console.log('Number of repos in db', count);
+
+      var data = {}
+      data.repos = repos;
+      data.count = count;
+
+      res.send(200, JSON.stringify(data));
+    });
+  });
+
 });
 
 let port = 1128;

@@ -26,6 +26,7 @@ let save = (repo) => {
 
   Repo.create(formatted, function (err, responseMaybe) {
     if (err) return handleError(err);
+    console.log('Item in db created');
     // saved!
   })
 }

@@ -1,0 +1,28 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  margin-left: 25px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.repoSuper {
+  margin: 20px 0;
+  text-decoration: none;
+}
+
+.title {
+  color: red;
+  text-decoration: none;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.stars {
+  margin: 0;
+}

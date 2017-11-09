@@ -19,7 +19,7 @@ let save = (repo) => {
     id: id,
     name: repo.name,
     url: repo.html_url,
-    stars: repo.stargazers_count
+    stars: repo.stargazers_count,
     username: repo.owner.login,
     userid: repo.owner.id
   }

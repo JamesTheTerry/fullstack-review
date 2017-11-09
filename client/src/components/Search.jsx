@@ -11,14 +11,14 @@ class Search extends React.Component {
     this.search = this.search.bind(this);
   }
 
-  onKeyDown (e) {
+  onKeyDown(e) {
     if (e.keyCode === 13) {
       console.log('Enter');
       this.search();
     }
   }
 
-  onChange (e) {
+  onChange(e) {
     this.setState({
       term: e.target.value
     });

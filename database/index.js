@@ -39,4 +39,15 @@ let save = (repo) => {
   });
 }
 
+let read = () => {
+  Repo.find({}).sort({ stars: -1 }).exec(function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+    }
+  });
+}
+
 module.exports.save = save;
+module.exports.read = read;

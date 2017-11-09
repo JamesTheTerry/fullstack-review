@@ -24,7 +24,8 @@
     "mongoose": "^4.13.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "webpack": "^2.2.1"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",

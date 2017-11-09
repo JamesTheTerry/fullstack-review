@@ -1,5 +1,5 @@
 const request = require('request');
-const config = require('../config.js');
+// const config = require('../config.js');
 const Promise = require("bluebird");
 
 let getReposByUsername = (username, outsideCallback) => {
@@ -10,7 +10,7 @@ let getReposByUsername = (username, outsideCallback) => {
       url: `https://api.github.com/users/${username}/repos`,
       headers: {
         'User-Agent': 'request',
-        'Authorization': `token ${config.TOKEN}`
+        'Authorization': `token ${GITHUBTOKEN}`
       }
     };
 

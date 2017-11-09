@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
+// might also want to put in index: true to have this be the index (can i have nonsequential indexs?)
 let repoSchema = mongoose.Schema({
-  // id: Schema.ObjectId,
-  id: {type: Number, unique: true}, // might also want to put in index: true to have this be the index (can i have nonsequential indexs?)
+  id: {type: Number, index: true, unique: true},
   name: String,
   url: String,
   stars: Number,
@@ -16,19 +16,27 @@ let Repo = mongoose.model('Repo', repoSchema);
 let save = (repo) => {
   // take the data
   var formatted = {
-    id: id,
+    id: repo.id,
     name: repo.name,
     url: repo.html_url,
     stars: repo.stargazers_count,
     username: repo.owner.login,
     userid: repo.owner.id
   }
-
+  // console.log('saving it');
   Repo.create(formatted, function (err, responseMaybe) {
-    if (err) return handleError(err);
-    console.log('Item in db created');
+    if (err) {
+      if (err['code'] === 11000) {
+        console.log('Duplicate Detected');
+      } else {
+        console.log('Mongo error: ', err);
+      }
+    }
+    else {
+      console.log('Item in db created');
+    };
     // saved!
-  })
+  });
 }
 
 module.exports.save = save;

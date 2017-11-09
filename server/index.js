@@ -17,6 +17,9 @@ app.post('/repos', function (req, res) {
   github.getReposByUsername(req.body.username)
   .then(repos => {
     console.log('Server repos\n', repos[0].name);
+    repos.forEach(repo => {
+      db.save(repo);
+    })
     res.send(201);
   });
 

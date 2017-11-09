@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   addRepos() {
-    $.get('http://127.0.0.1:1128/repos', (data, status) => {
+    $.get('/repos', (data, status) => {
       console.log('get: ', status);
       console.log(data); // this is the array of react divs
 
@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   search(term) {
-    $.post('http://127.0.0.1:1128/repos', {'username': term}, (data) => {
+    $.post('/repos', {'username': term}, (data) => {
       // success
       console.log(data);
       // clear the input field

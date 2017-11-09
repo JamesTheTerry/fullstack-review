@@ -8,11 +8,23 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const defaultCorsHeaders = {
+  'access-control-allow-origin': '*',
+  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'access-control-allow-headers': 'content-type, accept',
+  'access-control-max-age': 10 // Seconds.
+};
+
+app.options('/*', function(req, res) {
+  res.set(defaultCorsHeaders);
+  res.status(200).end();
+});
+
 app.post('/repos', function (req, res) {
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-
+  res.set(defaultCorsHeaders);
   console.log(req.body); // {username: 'JamesTheTerry' }
   github.getReposByUsername(req.body.username)
   .then(repos => {
@@ -27,7 +39,7 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   console.log('Get request received');
-
+  res.set(defaultCorsHeaders);
   db.getCount()
   .then(data => {
     console.log('DB COUNT', data);

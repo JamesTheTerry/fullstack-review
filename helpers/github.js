@@ -15,6 +15,7 @@ let getReposByUsername = (username, outsideCallback) => {
     };
 
     var callback = (err, res, body) => {
+      if (err) { reject(err); }
       if (!err && res.statusCode === 200) {
         var repos = JSON.parse(body);
         repos.forEach((repo) => {

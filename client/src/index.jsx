@@ -13,7 +13,7 @@ class App extends React.Component {
 
   }
 
-  search (term) {
+  search(term) {
     $.post('http://127.0.0.1:1128/repos', {'username': term}, function(data) {
       // success
       console.log(data);
@@ -23,12 +23,18 @@ class App extends React.Component {
     console.log(`${term} was searched`);
   }
 
-  render () {
+  render() {
     return (<div>
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
+  }
+
+  componentDidMount() {
+    $.get('http://127.0.0.1:1128/repos'), function(data) {
+      console.log(data);
+    }
   }
 }
 

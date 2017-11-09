@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
+const Promise = require("bluebird");
 
 // might also want to put in index: true to have this be the index (can i have nonsequential indexs?)
 let repoSchema = mongoose.Schema({
@@ -40,12 +41,17 @@ let save = (repo) => {
 }
 
 let read = () => {
-  Repo.find({}).sort({ stars: -1 }).exec(function(err, data) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(data);
-    }
+  return new Promise(function(resolve, reject) {
+    Repo.find({}).sort({ stars: -1 }).limit(25).exec(function(err, data) {
+      if (err) {
+        reject(err);
+        console.log(err);
+      } else {
+        resolve(data);
+        // the data is what you want, it's an array of objects
+        // console.log(data);
+      }
+    });
   });
 }
 

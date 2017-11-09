@@ -17,8 +17,6 @@ let getReposByUsername = (username, outsideCallback) => {
     var callback = (err, res, body) => {
       if (!err && res.statusCode === 200) {
         var repos = JSON.parse(body);
-        // console.log('GITHUB GET RESPONSE\n', data);
-        console.log(`Length ${repos.length}\n`);
         repos.forEach((repo) => {
           console.log(`Repo Id: ${repo.id}`);
           console.log(`Name: ${repo.name}`);

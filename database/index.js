@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/fetcher');
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost/fetcher'); // dev
+mongoose.connect(process.env.MONGODB_URI); // production
 const Promise = require("bluebird");
 
 // might also want to put in index: true to have this be the index (can i have nonsequential indexs?)

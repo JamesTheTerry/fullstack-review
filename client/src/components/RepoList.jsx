@@ -6,7 +6,7 @@ const RepoList = (props) => (
     There are {props.repoCount} repos.
       {props.repos.map(repo => {
         return <div className='repoSuper'>
-          <p className='title'><a href={repo.url}>{repo.name}</a></p>
+          <p className='title'><a href={repo.url}>{repo.name} by {repo.username}</a></p>
           <p className='stars'>{repo.stars} stars</p>
         </div>
       })}
